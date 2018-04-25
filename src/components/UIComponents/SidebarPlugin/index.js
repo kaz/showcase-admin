@@ -4,9 +4,24 @@ const SidebarStore = {
   showSidebar: false,
   sidebarLinks: [
     {
-      name: 'Dashboard',
-      icon: 'ti-panel',
-      path: '/admin/overview'
+      name: 'Deploy Logs',
+      icon: 'ti-receipt',
+      path: '/logs'
+    },
+    {
+      name: 'My Apps',
+      icon: 'ti-harddrive',
+      path: '/apps/my'
+    },
+    {
+      name: 'All Apps',
+      icon: 'ti-harddrives',
+      path: '/apps/all'
+    },
+    {
+      name: 'SSH Keys',
+      icon: 'ti-key',
+      path: '/keys'
     }
   ],
   displaySidebar (value) {

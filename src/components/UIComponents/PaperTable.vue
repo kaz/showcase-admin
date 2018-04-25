@@ -7,13 +7,26 @@
       </slot>
     </div>
     <div class="content table-responsive table-full-width">
-      <table class="table" :class="tableClass">
+      <table class="table table-striped">
         <thead>
           <th v-for="column in columns">{{column}}</th>
         </thead>
         <tbody>
-          <tr v-for="item in data">
-            <td v-for="column in columns" v-if="hasValue(item, column)">{{itemValue(item, column)}}</td>
+          <tr v-for="row in data">
+            <td v-for="item in row">
+              <router-link v-if="item.routerLink" :to="item.routerLink" class="btn btn-primary" tag="button">
+                <span v-if="item.icon" :class="item.icon"></span>
+                {{item.value}}
+              </router-link>
+              <a v-else-if="item.link" :href="item.link" target="_blank">
+                <span v-if="item.icon" :class="item.icon"></span>
+                {{item.value}}
+              </a>
+              <span v-else :class="item.badge ? ['badge', item.badge] : ''">
+                <span v-if="item.icon" :class="item.icon"></span>
+                {{item.value}}
+              </span>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -25,10 +38,6 @@
     props: {
       columns: Array,
       data: Array,
-      type: {
-        type: String, // striped | hover
-        default: 'striped'
-      },
       title: {
         type: String,
         default: ''
@@ -38,23 +47,12 @@
         default: ''
 
       }
-    },
-    computed: {
-      tableClass () {
-        return `table-${this.type}`
-      }
-    },
-    methods: {
-      hasValue (item, column) {
-        return item[column.toLowerCase()] !== 'undefined'
-      },
-      itemValue (item, column) {
-        return item[column.toLowerCase()]
-      }
     }
   }
 
 </script>
-<style>
-
+<style scoped>
+  .btn {
+    padding: 2px 1em;
+  }
 </style>

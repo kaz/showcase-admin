@@ -1,0 +1,20 @@
+@mixin badge-styles($badge-color, $badge-bg) {
+	color: $badge-color;
+	background-color: $badge-bg;
+}
+
+.badge-primary {
+  @include badge-styles($white-color, $primary-bg);
+}
+.badge-success {
+  @include badge-styles($white-color, $success-bg);
+}
+.badge-info {
+  @include badge-styles($white-color, $info-bg);
+}
+.badge-warning {
+  @include badge-styles($black-color, $warning-bg);
+}
+.badge-danger {
+  @include badge-styles($white-color, $danger-bg);
+}

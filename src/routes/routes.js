@@ -3,23 +3,31 @@ import DashboardLayout from '../components/Dashboard/Layout/DashboardLayout.vue'
 import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 
 // Admin pages
-import Overview from 'src/components/Dashboard/Views/Overview.vue'
+import Logs from 'src/components/Dashboard/Views/Logs.vue'
+import Apps from 'src/components/Dashboard/Views/Apps.vue'
 
 const routes = [
   {
     path: '/',
     component: DashboardLayout,
-    redirect: '/admin/overview'
-  },
-  {
-    path: '/admin',
-    component: DashboardLayout,
-    redirect: '/admin/stats',
+    redirect: '/logs',
     children: [
       {
-        path: 'overview',
-        name: 'overview',
-        component: Overview
+        path: 'logs',
+        name: 'Deploy logs',
+        component: Logs
+      },
+      {
+        path: 'apps/my',
+        name: 'My Applications',
+        component: Apps,
+        props: {scope: 'my'}
+      },
+      {
+        path: 'apps/all',
+        name: 'All Applications',
+        component: Apps,
+        props: {scope: 'all'}
       }
     ]
   },
