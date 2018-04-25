@@ -8,11 +8,15 @@
   </div>
 </template>
 <script>
+  import Notifier from 'components/Dashboard/mixin_notifier.js'
   import PaperTable from 'components/UIComponents/PaperTable.vue'
 
   import {statusColor, API} from 'src/showcase'
 
   export default {
+    mixins: [
+      Notifier
+    ],
     components: {
       PaperTable
     },
@@ -84,19 +88,10 @@
       }
     },
     methods: {
-      emitError (msg) {
-        this.$notifications.notify({
-          message: `[Showcase returns error]<br>${msg}`,
-          icon: 'ti-face-sad',
-          type: 'danger',
-          verticalAlign: 'top',
-          horizontalAlign: 'right'
-        })
-      },
       async getData () {
         const [ok, raw] = await API('log', {})
         if (!ok) {
-          return this.emitError(raw)
+          return this.notifyRemoteError(raw)
         }
         this.logs = raw.reverse()
       }

@@ -62,7 +62,7 @@
           <div class="content actions">
             <label>SSH Access</label>
             <p><code>ssh -p 22 showcase@{{serverHost}}</code></p>
-            <p><router-link to="/keys">SSH key management</router-link></p>
+            <p><a target="_blank" href="https://git.trapti.tech/user/settings/keys">SSH key management</a></p>
             <br>
             <label>Deploy</label>
             <button class="btn btn-success" @click="deploy('create')">Trigger deployment</button>
@@ -162,11 +162,15 @@
 </template>
 <script>
   import Shell from 'components/UIComponents/Shell.vue'
+  import Notifier from 'components/Dashboard/mixin_notifier.js'
   import StatsCard from 'components/UIComponents/Cards/StatsCard.vue'
 
   import {GIT_URL, statusColor, printPort, printHostname, API} from 'src/showcase'
 
   export default {
+    mixins: [
+      Notifier
+    ],
     components: {
       Shell,
       StatsCard
@@ -238,19 +242,10 @@
       param (obj) {
         return Object.assign({}, this.$route.query, obj)
       },
-      notify (type, face, title, msg) {
-        this.$notifications.notify({
-          type,
-          icon: `ti-face-${face}`,
-          message: `[${title}]<br>${msg}`,
-          verticalAlign: 'top',
-          horizontalAlign: 'right'
-        })
-      },
       async getData (req = {}) {
         const [ok, raw] = await API('app', this.param(req))
         if (!ok) {
-          return this.notify('danger', 'sad', 'Showcase returns error', raw)
+          return this.notifyRemoteError(raw)
         }
         this.app = raw
         if ('stdout' in raw) {
@@ -298,11 +293,11 @@
                   if (!ok) {
                     throw new Error(raw)
                   }
-                  this.notify('info', 'smile', 'Succeeded', 'Environment variables were updated')
+                  this.notifyPassed('Environment variables were updated')
                   this.$modal.hide('dialog')
                   await this.getData()
                 } catch (e) {
-                  this.notify('danger', 'sad', 'An error occurred', e)
+                  this.notifyLocalError(e)
                 }
               }
             }
@@ -312,9 +307,9 @@
       async deploy (mode, param = {}) {
         const [ok, raw] = await API(mode, this.param(param))
         if (!ok) {
-          return this.notify('danger', 'sad', 'Showcase returns error', raw)
+          return this.notifyRemoteError(raw)
         }
-        this.notify('success', 'smile', 'Showcase says', raw)
+        this.notifyPassed(raw)
         if (mode === 'remove') {
           return this.$router.replace('/apps/my')
         }
