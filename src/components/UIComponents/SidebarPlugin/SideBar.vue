@@ -21,11 +21,15 @@
         <router-link v-for="(link,index) in sidebarLinks" :to="link.path" tag="li" :ref="link.name" :key="link.name + index">
           <a>
             <i :class="link.icon"></i>
-
-            <p>{{link.name}}
-            </p>
+            <p>{{link.name}}</p>
           </a>
         </router-link>
+        <li>
+          <a target="_blank" href="https://wiki.trapti.tech/general/showcase">
+            <i class="ti-book"></i>
+            <p>Documents</p>
+          </a>
+        </li>
       </ul>
       <moving-arrow :move-y="arrowMovePx">
 

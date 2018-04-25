@@ -17,11 +17,6 @@ const SidebarStore = {
       name: 'All Apps',
       icon: 'ti-harddrives',
       path: '/apps/all'
-    },
-    {
-      name: 'SSH Keys',
-      icon: 'ti-key',
-      path: '/keys'
     }
   ],
   displaySidebar (value) {

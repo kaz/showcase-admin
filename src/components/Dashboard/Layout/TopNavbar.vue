@@ -14,7 +14,6 @@
         <ul class="nav navbar-nav navbar-right">
           <li><img class="user-icon" :src="`https://q.trapti.tech/static/icon/${me}/64.png`"></li>
           <drop-down :title="me">
-            <li><a target="_blank" href="https://wiki.trapti.tech/general/showcase">Documents</a></li>
             <li><a target="_blank" href="https://git.trapti.tech/user/settings/keys">Manage SSH keys (traP git)</a></li>
             <li><a href="#" @click="syncKey">Sync SSH keys (with traP git)</a></li>
           </drop-down>
