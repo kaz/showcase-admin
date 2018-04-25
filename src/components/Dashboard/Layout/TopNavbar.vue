@@ -12,27 +12,8 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="open">
-            <a href="#" class="dropdown-toggle btn-magnify" data-toggle="dropdown">
-              <i class="ti-panel"></i>
-              <p>Stats</p>
-            </a>
-          </li>
-             <drop-down title="5 Notifications" icon="ti-bell">
-               <li><a href="#">Notification 1</a></li>
-               <li><a href="#">Notification 2</a></li>
-               <li><a href="#">Notification 3</a></li>
-               <li><a href="#">Notification 4</a></li>
-               <li><a href="#">Another notification</a></li>
-             </drop-down>
-          <li>
-            <a href="#" class="btn-rotate">
-              <i class="ti-settings"></i>
-              <p>
-                Settings
-              </p>
-            </a>
-          </li>
+          <li><img class="user-icon" src="https://q.trapti.tech/static/icon/kaz/64.png"></li>
+          <li><a>kaz</a></li>
         </ul>
       </div>
     </div>
@@ -71,6 +52,11 @@
   }
 
 </script>
-<style>
-
+<style scoped>
+  .user-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    margin: 18px 9px;
+  }
 </style>

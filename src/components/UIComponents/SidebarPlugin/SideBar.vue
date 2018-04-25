@@ -9,11 +9,8 @@
     <!-- -->
     <div class="sidebar-wrapper" id="style-3">
       <div class="logo">
-        <a href="#" class="simple-text">
-            <div class="logo-img">
-                <img src="static/img/vue-logo.png" alt="">
-            </div>
-          Paper Dashboard
+        <a class="simple-text">
+          traP <strong>Showcase</strong>
         </a>
       </div>
       <slot>
@@ -50,7 +47,7 @@
       },
       backgroundColor: {
         type: String,
-        default: 'black',
+        default: 'darkblue',
         validator: (value) => {
           let acceptedValues = ['white', 'black', 'darkblue']
           return acceptedValues.indexOf(value) !== -1
@@ -127,6 +124,15 @@
   }
 
 </script>
-<style>
-
+<style scoped>
+  .simple-text {
+    text-align: center !important;
+    font-family: 'Raleway' !important;
+    font-size: 18px !important;
+  }
+  .simple-text strong {
+    color: inherit;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
 </style>
