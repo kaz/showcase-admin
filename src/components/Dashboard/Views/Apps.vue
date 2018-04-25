@@ -27,7 +27,7 @@
     },
     computed: {
       columns () {
-        return ['Repository', 'Branch', 'Status', 'Port', 'Link', this.scope === 'my' ? 'Manage' : 'Config']
+        return ['Source', 'Status', 'Port', 'Link', this.scope === 'my' ? 'Manage' : 'Config']
       }
     },
     beforeDestroy () {
@@ -59,13 +59,9 @@
         }
         this.data = raw.map(app => [
           {
-            value: app.repo,
-            link: `${GIT_URL}/${app.repo}/`,
-            icon: 'ti-cloud'
-          },
-          {
-            value: app.branch,
-            link: `${GIT_URL}/${app.repo}/src/branch/${app.branch}/`
+            value: `${app.repo} (${app.branch})`,
+            link: `${GIT_URL}/${app.repo}/src/branch/${app.branch}/`,
+            icon: 'ti-server'
           },
           {
             value: app.status,
