@@ -5,6 +5,7 @@ import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 // Admin pages
 import Logs from 'src/components/Dashboard/Views/Logs.vue'
 import Apps from 'src/components/Dashboard/Views/Apps.vue'
+import Manage from 'src/components/Dashboard/Views/Manage.vue'
 
 const routes = [
   {
@@ -14,7 +15,7 @@ const routes = [
     children: [
       {
         path: 'logs',
-        name: 'Deploy logs',
+        name: 'Deploy Logs',
         component: Logs
       },
       {
@@ -28,6 +29,11 @@ const routes = [
         name: 'All Applications',
         component: Apps,
         props: {scope: 'all'}
+      },
+      {
+        path: 'manage',
+        name: 'Manage Applications',
+        component: Manage
       }
     ]
   },

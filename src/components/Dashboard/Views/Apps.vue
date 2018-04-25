@@ -10,7 +10,7 @@
 <script>
   import PaperTable from 'components/UIComponents/PaperTable.vue'
 
-  import {GIT_URL, statusBadge, printPort, printHostname, API} from 'src/showcase'
+  import {GIT_URL, statusColor, printPort, printHostname, API} from 'src/showcase'
 
   export default {
     components: {
@@ -34,7 +34,7 @@
       clearInterval(this.timer)
     },
     created () {
-      this.timer = setInterval(this.getData, 30 * 1000)
+      this.timer = setInterval(this.getData, 32768)
       this.getData()
     },
     watch: {
@@ -57,15 +57,15 @@
         if (!ok) {
           return this.emitError(raw)
         }
-        this.data = raw.map(app => [
+        this.data = raw.reverse().map(app => [
           {
             value: `${app.repo} (${app.branch})`,
             link: `${GIT_URL}/${app.repo}/src/branch/${app.branch}/`,
             icon: 'ti-server'
           },
           {
-            value: app.status,
-            badge: statusBadge(app.status)
+            value: app.status.Status,
+            badge: statusColor('badge', app.status.Status)
           },
           {
             value: printPort(app.config.expose)

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueModal from 'vue-js-modal'
 
 // Plugins
 import GlobalComponents from './globalComponents'
@@ -19,6 +20,7 @@ import 'es6-promise/auto'
 
 // plugin setup
 Vue.use(VueRouter)
+Vue.use(VueModal, {dialog: true})
 Vue.use(GlobalComponents)
 Vue.use(GlobalDirectives)
 Vue.use(Notifications)
