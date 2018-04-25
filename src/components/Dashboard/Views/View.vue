@@ -3,7 +3,14 @@
     <div class="col-md-12">
       <div class="card">
         <div class="header">
-          <h3>{{log.repo}} <small>({{log.branch}})</small></h3>
+          <h3>
+            Deploy:
+            <router-link :to="link">
+              <i class="ti-server"></i>
+              {{log.repo}}
+            </router-link>
+            <small>({{log.branch}})</small>
+          </h3>
           <hr>
           <p>
             <span class="badge" :class="badgeClass">{{log.status}}</span>
@@ -36,6 +43,15 @@
       }
     },
     computed: {
+      link () {
+        return {
+          path: '/manage',
+          query: {
+            repo: this.log.repo,
+            ref: this.log.branch
+          }
+        }
+      },
       badgeClass () {
         return statusColor('badge', this.log.status)
       }

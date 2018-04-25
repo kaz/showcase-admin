@@ -22,7 +22,7 @@
           <div class="icon-big text-center" :class="statusColor" slot="header">
             <i :class="statusIcon"></i>
           </div>
-          <div class="numbers" slot="content">
+          <div class="numbers capital" slot="content">
             <p>Status</p>
             <span style="text-transform: uppercase">
               {{app.status.Status}}
@@ -42,7 +42,7 @@
           </div>
           <div class="numbers" slot="content">
             <p>Deployed</p>
-            {{app.logs.length}} <small>TIMES</small>
+            {{app.logs.length}} <small>TIME{{app.logs.length === 1 ? '' : 'S'}}</small>
           </div>
           <div class="stats" slot="footer">
             <router-link :to="{path: '/logs', query: $route.query}">

@@ -3,9 +3,7 @@
 </template>
 <script>
   import Convert from 'ansi-to-html'
-  import DOMPurify from 'dompurify'
-
-  const converter = new Convert()
+  const converter = new Convert({escapeXML: true})
 
   export default {
     props: {
@@ -13,8 +11,15 @@
     },
     computed: {
       rendered () {
-        return DOMPurify.sanitize(converter.toHtml(this.value))
+        return converter.toHtml(this.value)
       }
     }
   }
 </script>
+
+<style scoped>
+  pre {
+    background-color: #000;
+    color: #FFF;
+  }
+</style>

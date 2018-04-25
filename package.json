@@ -14,7 +14,6 @@
     "ansi-to-html": "^0.6.4",
     "bootstrap": "^3.3.7",
     "chartist": "^0.10.1",
-    "dompurify": "^1.0.3",
     "es6-promise": "^4.1.1",
     "vue": "^2.4.2",
     "vue-clickaway": "^2.1.0",
