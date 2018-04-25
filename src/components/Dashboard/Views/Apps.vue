@@ -79,13 +79,15 @@
           },
           this.scope === 'my' ? {
             value: 'Manage this app',
-            routerLink: {
+            routing: {
               path: '/manage',
               query: {
                 repo: app.repo,
                 ref: app.branch
               }
-            }
+            },
+            linkTag: 'button',
+            linkClass: 'btn'
           } : {
             value: 'showcase.yaml',
             link: `${GIT_URL}/${app.repo}/src/branch/${app.branch}/showcase.yaml`,

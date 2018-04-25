@@ -4,6 +4,7 @@ import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 
 // Admin pages
 import Logs from 'src/components/Dashboard/Views/Logs.vue'
+import View from 'src/components/Dashboard/Views/View.vue'
 import Apps from 'src/components/Dashboard/Views/Apps.vue'
 import Manage from 'src/components/Dashboard/Views/Manage.vue'
 
@@ -17,6 +18,12 @@ const routes = [
         path: 'logs',
         name: 'Deploy Logs',
         component: Logs
+      },
+      {
+        path: 'view/:id',
+        name: 'View Logs',
+        component: View,
+        props: true
       },
       {
         path: 'apps/my',

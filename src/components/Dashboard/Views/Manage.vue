@@ -142,7 +142,7 @@
         </div>
       </article>
     </div>
-    <div class="row">
+    <div class="row" v-if="dynamic">
       <article class="col-sm-12">
         <div class="card">
           <div class="header">
@@ -150,8 +150,8 @@
             <hr>
           </div>
           <div class="content">
-            <pre v-if="stdout" v-html="coloredStdout"></pre>
-            <button class="btn btn-lg" @click="getData({stdout: true})">{{stdout ? 'Update' : 'View'}} STDOUT</button>
+            <shell v-if="stdout" :value="stdout" />
+            <button class="btn btn-lg btn-primary" @click="getData({stdout: true})">{{stdout ? 'Update' : 'View'}} STDOUT</button>
             <br><br>
           </div>
         </div>
@@ -161,16 +161,14 @@
   </section>
 </template>
 <script>
-  import Convert from 'ansi-to-html'
-  import DOMPurify from 'dompurify'
+  import Shell from 'components/UIComponents/Shell.vue'
   import StatsCard from 'components/UIComponents/Cards/StatsCard.vue'
 
   import {GIT_URL, statusColor, printPort, printHostname, API} from 'src/showcase'
 
-  const converter = new Convert()
-
-export default {
+  export default {
     components: {
+      Shell,
       StatsCard
     },
     computed: {
@@ -203,7 +201,7 @@ export default {
       },
       httpProxying () {
         if (this.app.config.http_proxy) {
-          return DOMPurify.sanitize(`host( ${printPort([80, 443])} ) <i class="ti-control-forward"></i> app( ${printPort(this.app.config.http_proxy)} )`)
+          return `host( ${printPort([80, 443])} ) <i class="ti-control-forward"></i> app( ${printPort(this.app.config.http_proxy)} )`
         }
         return 'not used'
       },
@@ -215,9 +213,6 @@ export default {
       },
       dynamic () {
         return this.app.config.type !== 'static'
-      },
-      coloredStdout () {
-        return DOMPurify.sanitize(converter.toHtml(this.stdout))
       }
     },
     data () {

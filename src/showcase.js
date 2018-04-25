@@ -3,12 +3,13 @@
 export const GIT_URL = 'https://git.trapti.tech'
 const PUBLIC_DOMAIN = '.trap.show'
 
-const badge = {
+const colors = {
+  'Succeeded': 'success',
   'running': 'success',
   'static serving': 'info',
   'deploying': 'warning'
 }
-export const statusColor = (prefix, status) => [prefix, badge[status] || 'danger'].join('-')
+export const statusColor = (prefix, status) => [prefix, colors[status] || 'danger'].join('-')
 
 export const printPort = expose => {
   if (!expose) {

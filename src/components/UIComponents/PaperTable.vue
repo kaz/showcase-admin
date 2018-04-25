@@ -7,18 +7,18 @@
       </slot>
     </div>
     <div class="content table-responsive table-full-width">
-      <table class="table table-striped">
+      <table class="table" :class="'table-' + type">
         <thead>
           <th v-for="column in columns">{{column}}</th>
         </thead>
         <tbody>
           <tr v-for="row in data">
             <td v-for="item in row">
-              <router-link v-if="item.routerLink" :to="item.routerLink" class="btn btn-primary" tag="button">
+              <router-link v-if="item.routing" :to="item.routing" :tag="item.linkTag" :class="item.linkClass">
                 <span v-if="item.icon" :class="item.icon"></span>
                 {{item.value}}
               </router-link>
-              <a v-else-if="item.link" :href="item.link" target="_blank">
+              <a v-else-if="item.link" :href="item.link" :class="item.linkClass" target="_blank">
                 <span v-if="item.icon" :class="item.icon"></span>
                 {{item.value}}
               </a>
@@ -45,7 +45,10 @@
       subTitle: {
         type: String,
         default: ''
-
+      },
+      type: {
+        type: String,
+        default: 'striped'
       }
     }
   }
