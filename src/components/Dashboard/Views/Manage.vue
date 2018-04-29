@@ -293,7 +293,7 @@
                   if (!ok) {
                     throw new Error(raw)
                   }
-                  this.notifyPassed('Environment variables were updated')
+                  this.notifyPassed(raw)
                   this.$modal.hide('dialog')
                   await this.getData()
                 } catch (e) {

@@ -20,9 +20,6 @@
     components: {
       PaperTable
     },
-    props: {
-      scope: String
-    },
     data () {
       return {
         logs: [],
@@ -81,11 +78,6 @@
     created () {
       this.timer = setInterval(this.getData, 32768)
       this.getData()
-    },
-    watch: {
-      scope () {
-        this.getData()
-      }
     },
     methods: {
       async getData () {

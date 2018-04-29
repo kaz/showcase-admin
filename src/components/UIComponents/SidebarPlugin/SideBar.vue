@@ -25,7 +25,7 @@
           </a>
         </router-link>
         <li>
-          <a target="_blank" href="https://wiki.trapti.tech/general/showcase">
+          <a target="_blank" href="https://wiki.trapti.tech/SysAd/docs/Showcase">
             <i class="ti-book"></i>
             <p>Documents</p>
           </a>

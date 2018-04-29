@@ -63,6 +63,11 @@
     created () {
       this.getData()
     },
+    watch: {
+      id () {
+        this.getData()
+      }
+    },
     methods: {
       async getData () {
         const [ok, raw] = await API('log', {id: this.id})
