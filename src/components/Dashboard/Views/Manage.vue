@@ -93,6 +93,17 @@
             <p>{{new Date(app.created).toLocaleString()}}</p>
             <label>Updated at</label>
             <p>{{new Date(app.updated).toLocaleString()}}</p>
+            <label>App URLs</label>
+            <ol>
+              <template v-if="openLink">
+                <li><a :href="openLink" target="_blank">{{openLink}}</a></li>
+                <li><a :href="namespaceOpenLink" target="_blank">{{namespaceOpenLink}}</a></li>
+                <li><a :href="commonOpenLink" target="_blank">{{commonOpenLink}}</a></li>
+              </template>
+              <li v-for="cname in app.config.cname">
+                <a :href="'http://' + cname" target="_blank">http://{{cname}}/</a>
+              </li>
+            </ol>
           </div>
         </div>
         <div class="card">
@@ -124,10 +135,7 @@
                 not configured
               </template>
               <template v-for="cname in app.config.cname">
-                <a :href="'http://' + cname" target="_blank">
-                  {{cname}}
-                </a>
-                <br>
+                {{cname}}<br>
               </template>
             </p>
             <label>Workdir / Docroot (relative from repository root)</label>
@@ -165,7 +173,7 @@
   import Notifier from 'components/Dashboard/mixin_notifier.js'
   import StatsCard from 'components/UIComponents/Cards/StatsCard.vue'
 
-  import {GIT_URL, statusColor, printPort, printHostname, API} from 'src/showcase'
+  import {GIT_URL, PUBLIC_DOMAIN, statusColor, printPort, printHostname, API} from 'src/showcase'
 
   export default {
     mixins: [
@@ -196,9 +204,16 @@
       },
       openLink () {
         if (this.app.config.type === 'static' || this.app.config.http_proxy) {
-          return `http://${printHostname(this.app)}`
+          return `http://${printHostname(this.app)}/`
         }
         return null
+      },
+      commonOpenLink () {
+        return `https://${PUBLIC_DOMAIN}/~${this.app.repo.toLowerCase()}/`
+      },
+      namespaceOpenLink () {
+        const [ns, repo] = this.app.repo.toLowerCase().split('/')
+        return `https://${ns}.${PUBLIC_DOMAIN}/${repo}/`
       },
       serverHost () {
         return location.hostname
@@ -341,5 +356,9 @@ textarea {
   }
   .config > p {
     margin-bottom: 1.3em;
+  }
+  ol {
+    padding: 0 0 0 1.5em;
+    line-height: 1.6em;
   }
 </style>

@@ -1,7 +1,7 @@
 'use strict'
 
 export const GIT_URL = 'https://git.trapti.tech'
-const PUBLIC_DOMAIN = '.trap.show'
+export const PUBLIC_DOMAIN = 'trap.show'
 
 const colors = {
   'succeeded': 'success',
@@ -25,7 +25,7 @@ export const printPort = expose => {
 }
 
 export const printHostname = app => {
-  const name = app.repo.toLowerCase().split('/').reverse().join('.') + PUBLIC_DOMAIN
+  const name = app.repo.toLowerCase().split('/').reverse().concat([PUBLIC_DOMAIN]).join('.')
   if (app.branch !== 'master') {
     return `${app.branch}.${name}`
   }
