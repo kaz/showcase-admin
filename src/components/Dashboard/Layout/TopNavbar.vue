@@ -9,6 +9,7 @@
           <span class="icon-bar bar3"></span>
         </button>
         <a class="navbar-brand">{{routeName}}</a>
+        <a class="navbar-brand" style="color:red" v-if="isAdmin">(admin-mode)</a>
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -34,6 +35,9 @@
       routeName () {
         const {name} = this.$route
         return this.capitalizeFirstLetter(name)
+      },
+      isAdmin () {
+        return sessionStorage.admin
       }
     },
     data () {

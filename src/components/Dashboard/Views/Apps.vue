@@ -48,7 +48,7 @@
     },
     methods: {
       async getData () {
-        const [ok, raw] = await API('apps', {scope: this.scope})
+        const [ok, raw] = await API('apps', {scope: sessionStorage.admin ? 'all' : this.scope})
         if (!ok) {
           return this.notifyRemoteError(raw)
         }

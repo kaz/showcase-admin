@@ -81,7 +81,7 @@
     },
     methods: {
       async getData () {
-        const [ok, raw] = await API('log', {})
+        const [ok, raw] = await API('log', sessionStorage.admin ? {all: 1} : {})
         if (!ok) {
           return this.notifyRemoteError(raw)
         }
